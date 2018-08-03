@@ -14,14 +14,14 @@ module.exports = {
   output: {
     path: output,
     filename: 'main.js',
-    libraryTarget: 'commonjs2'
+    libraryTarget: 'commonjs2',
   },
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: 'babel-loader'
+        use: 'babel-loader',
       },
       {
         test: /\.styl$/,
@@ -31,30 +31,30 @@ module.exports = {
             loader: 'css-loader/locals',
             options: {
               modules: true,
-              localIdentName: '[name]__[local]--[hash:base64:5]'
-            }
+              localIdentName: '[name]__[local]--[hash:base64:5]',
+            },
           },
           {
-            loader: 'stylus-loader'
-          }
-        ]
-      }
-    ]
+            loader: 'stylus-loader',
+          },
+        ],
+      },
+    ],
   },
   resolve: {
-    extensions: ['.js', '.css', '.styl']
+    extensions: ['.js', '.css', '.styl'],
   },
   plugins: [
     new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.LimitChunkCountPlugin({
-      maxChunks: 1
+      maxChunks: 1,
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('production')
-      }
+        NODE_ENV: JSON.stringify('production'),
+      },
     }),
-    new webpack.HashedModuleIdsPlugin()
-  ]
+    new webpack.HashedModuleIdsPlugin(),
+  ],
 }

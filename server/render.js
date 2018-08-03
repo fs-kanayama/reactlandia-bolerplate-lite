@@ -7,7 +7,7 @@ import App from '../src/components/App'
 
 export default ({ clientStats }) => (req, res) => {
   const history = createHistory({ initialEntries: [req.path] })
-  const app = ReactDOM.renderToString(<App history={history} />)
+  const app = ReactDOM.renderToString(<App history={history}/>)
   const chunkNames = flushChunkNames()
 
   const {
@@ -15,7 +15,7 @@ export default ({ clientStats }) => (req, res) => {
     styles,
     cssHash,
     scripts,
-    stylesheets
+    stylesheets,
   } = flushChunks(clientStats, { chunkNames })
 
   console.log('PATH', req.path)
@@ -36,6 +36,6 @@ export default ({ clientStats }) => (req, res) => {
           ${cssHash}
           ${js}
         </body>
-      </html>`
+      </html>`,
   )
 }

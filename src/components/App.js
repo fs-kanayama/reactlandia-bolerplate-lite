@@ -1,49 +1,27 @@
 import React from 'react'
-import styles from '../css/App'
-import UsageHero from './UsageHero'
-import { pages, nextIndex, indexFromPath } from '../utils'
-import UniversalComponent from '../UniversalComponent'
+
+import { indexFromPath, nextIndex, pages } from '../utils'
+import UniversalPage from './UniversalPage'
 
 export default class App extends React.Component {
   render() {
     const { index, done, loading } = this.state
     const page = pages[index]
-    const loadingClass = loading ? styles.loading : ''
-    const buttonClass = `${styles[page]} ${loadingClass}`
+
+    // console.log(page)
 
     return (
-      <div className={styles.container}>
+      <>
         <h1>
-Hello Reactlandia
+          Hello Reactlandia
         </h1>
-        {done && (
-        <div className={styles.checkmark}>
-all loaded ✔
-        </div>
-        )}
 
-        <UsageHero page={page} />
+        <UniversalPage page={page}/>
 
-        <UniversalComponent
-          page={`components/${page}`}
-          onBefore={this.beforeChange}
-          onAfter={this.afterChange}
-          onError={this.handleError}
-        />
-
-        <button type='button' className={buttonClass} onClick={this.changePage}>
+        <button type='button' onClick={this.changePage}>
           {this.buttonText()}
         </button>
-
-        <p>
-          <span>
-*why are you looking at this? refresh the page
-          </span>
-          <span>
-and view the source in Chrome for the real goods
-          </span>
-        </p>
-      </div>
+      </>
     )
   }
 
@@ -57,7 +35,7 @@ and view the source in Chrome for the real goods
       index,
       loading: false,
       done: false,
-      error: false
+      error: false,
     }
 
     history.listen(({ pathname }) => {
@@ -69,7 +47,7 @@ and view the source in Chrome for the real goods
   changePage = () => {
     const { loading, index } = this.state
     const { history } = this.props
-    if (loading) return
+    if(loading) return
 
     const idx = nextIndex(index)
     const page = pages[idx]
@@ -78,16 +56,16 @@ and view the source in Chrome for the real goods
   }
 
   beforeChange = ({ isSync }) => {
-    if (!isSync) {
+    if(!isSync) {
       this.setState({ loading: true, error: false })
     }
   }
 
   afterChange = ({ isSync, isServer, isMount }) => {
-    if (!isSync) {
+    if(!isSync) {
       this.setState({ loading: false, error: false })
     }
-    else if (!isServer && !isMount) {
+    else if(!isServer && !isMount) {
       this.setState({ done: true, error: false })
     }
   }
@@ -98,7 +76,7 @@ and view the source in Chrome for the real goods
 
   buttonText() {
     const { loading, error } = this.state
-    if (error) return 'ERROR'
+    if(error) return 'ERROR'
     return loading ? 'LOADING...' : 'CHANGE PAGE'
   }
 }

@@ -11,20 +11,20 @@ module.exports = {
   entry: [
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=false&quiet=false&noInfo=false',
     'react-hot-loader/patch',
-    path.resolve(__dirname, '../src/index.js')
+    path.resolve(__dirname, '../src/index.js'),
   ],
   output: {
     filename: '[name].js',
     chunkFilename: '[name].js',
     path: path.resolve(__dirname, '../.dev/client'),
-    publicPath: '/static/'
+    publicPath: '/static/',
   },
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: 'babel-loader'
+        use: 'babel-loader',
       },
       {
         test: /\.styl$/,
@@ -34,18 +34,18 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[name]__[local]--[hash:base64:5]'
-            }
+              localIdentName: '[name]__[local]--[hash:base64:5]',
+            },
           },
           {
-            loader: 'stylus-loader'
-          }
-        ]
-      }
-    ]
+            loader: 'stylus-loader',
+          },
+        ],
+      },
+    ],
   },
   resolve: {
-    extensions: ['.js', '.css', '.styl']
+    extensions: ['.js', '.css', '.styl'],
   },
   plugins: [
     new WriteFilePlugin(),
@@ -55,8 +55,8 @@ module.exports = {
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('development')
-      }
-    })
-  ]
+        NODE_ENV: JSON.stringify('development'),
+      },
+    }),
+  ],
 }

@@ -11,7 +11,7 @@ module.exports = {
     filename: '[name].[chunkhash].js',
     chunkFilename: '[name].[chunkhash].js',
     path: path.resolve(__dirname, '../.prod/client'),
-    publicPath: '/static/'
+    publicPath: '/static/',
   },
   stats: 'verbose',
   module: {
@@ -19,7 +19,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: 'babel-loader'
+        use: 'babel-loader',
       },
       {
         test: /\.styl$/,
@@ -29,19 +29,19 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: true,
-              localIdentName: '[name]__[local]--[hash:base64:5]'
-            }
+              localIdentName: '[name]__[local]--[hash:base64:5]',
+            },
           },
           {
-            loader: 'stylus-loader'
-          }
-        ]
-      }
-    ]
+            loader: 'stylus-loader',
+          },
+        ],
+      },
+    ],
   },
   mode: 'development',
   resolve: {
-    extensions: ['.js', '.css', '.styl']
+    extensions: ['.js', '.css', '.styl'],
   },
   plugins: [
     new ExtractCssChunks(),
@@ -49,9 +49,9 @@ module.exports = {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('production')
-      }
+        NODE_ENV: JSON.stringify('production'),
+      },
     }),
-    new webpack.HashedModuleIdsPlugin() // not needed for strategy to work (just good practice)
-  ]
+    new webpack.HashedModuleIdsPlugin(), // not needed for strategy to work (just good practice)
+  ],
 }

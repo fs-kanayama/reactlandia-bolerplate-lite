@@ -1,10 +1,6 @@
 import React from 'react'
-import styles from '../css/Loading'
 
-export default ({ page }) => (
-  <div className={styles[page]}>
-    <div className={styles.spinner}>
-      <div />
-    </div>
-  </div>
-)
+
+const Loading = () => <h1>Loading...</h1>
+
+export default Loading

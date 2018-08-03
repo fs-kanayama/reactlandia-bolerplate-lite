@@ -25,7 +25,7 @@ const done = () =>
     console.log('BUILD COMPLETE -- Listening @ http://localhost:3000'.magenta)
   })
 
-if (DEV) {
+if(DEV) {
   const compiler = webpack([clientConfig, serverConfig])
   const clientCompiler = compiler.compilers[0]
   const options = { publicPath, stats: { colors: true } }
