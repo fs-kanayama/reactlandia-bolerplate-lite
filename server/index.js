@@ -42,7 +42,7 @@ else {
 
     const clientStats = stats.toJson().children[0]
 
-    const mainjs = `${serverConfigProd.output.path}/main.js`
+    const mainjs = `${serverConfigProd.output.path}/${serverConfigProd.output.filename}`
     const serverRender = require(mainjs).default
 
     app.use(publicPath, express.static(outputPath))
