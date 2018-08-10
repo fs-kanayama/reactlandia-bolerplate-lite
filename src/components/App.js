@@ -1,82 +1,32 @@
 import React from 'react'
+import { connect, Provider } from 'react-redux'
 
-import { indexFromPath, nextIndex, pages } from '../utils'
-import UniversalPage from './UniversalPage'
+import Switcher from './Switcher'
+import Nav from './Nav'
 
-export default class App extends React.Component {
-  render() {
-    const { index, done, loading } = this.state
-    const page = pages[index]
+import initStore from '../state/store'
 
-    // console.log(page)
 
-    return (
-      <>
-        <h1>
-          Hello Reactlandia
-        </h1>
+const createApp = ({ url } = {}) => {
+  const { store } = initStore({ url })
 
-        <UniversalPage page={page}/>
+  const App = () => (
+    <div>
+      <Nav/>
+      <hr/>
+      <Switcher/>
+    </div>
+  )
 
-        <button type='button' onClick={this.changePage}>
-          {this.buttonText()}
-        </button>
-      </>
-    )
-  }
+  const AppConnected = connect()(App)
 
-  constructor(props) {
-    super(props)
+  const AppWrapped = () => (
+    <Provider store={store}>
+      <AppConnected/>
+    </Provider>
+  )
 
-    const { history } = props
-    const index = indexFromPath(history.location.pathname)
-
-    this.state = {
-      index,
-      loading: false,
-      done: false,
-      error: false,
-    }
-
-    history.listen(({ pathname }) => {
-      const index = indexFromPath(pathname)
-      this.setState({ index })
-    })
-  }
-
-  changePage = () => {
-    const { loading, index } = this.state
-    const { history } = this.props
-    if(loading) return
-
-    const idx = nextIndex(index)
-    const page = pages[idx]
-
-    history.push(`/${page}`)
-  }
-
-  beforeChange = ({ isSync }) => {
-    if(!isSync) {
-      this.setState({ loading: true, error: false })
-    }
-  }
-
-  afterChange = ({ isSync, isServer, isMount }) => {
-    if(!isSync) {
-      this.setState({ loading: false, error: false })
-    }
-    else if(!isServer && !isMount) {
-      this.setState({ done: true, error: false })
-    }
-  }
-
-  handleError = error => {
-    this.setState({ error: true, loading: false })
-  }
-
-  buttonText() {
-    const { loading, error } = this.state
-    if(error) return 'ERROR'
-    return loading ? 'LOADING...' : 'CHANGE PAGE'
-  }
+  return { App: AppWrapped, store }
 }
+
+export default createApp

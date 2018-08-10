@@ -1,6 +1,19 @@
 const path = require('path')
 const webpack = require('webpack')
 
+const modes = {
+  production: 'production',
+  development: 'development',
+  testing: 'testing',
+}
+
+const MODE = process.env.NODE_ENV || modes.production
+const IS_DEVELOPMENT = MODE === modes.development
+const IS_PRODUCTION = MODE === modes.production
+const IS_TESTING = MODE === modes.testing
+
+const VERBOSE = false
+
 const res = p => path.resolve(__dirname, p)
 
 const entry = res('../server/render.js')
@@ -21,7 +34,12 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: 'babel-loader',
+        use: {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: false,
+          },
+        },
       },
     ],
   },
@@ -29,6 +47,16 @@ module.exports = {
     extensions: ['.js', '.css', '.styl'],
   },
   plugins: [
+    new webpack.EnvironmentPlugin({
+      BABEL_ENV: process.env.BABEL_ENV,
+      NODE_ENV: process.env.NODE_ENV,
+      IS_SERVER: true,
+      DEBUG: IS_DEVELOPMENT,
+      IS_DEVELOPMENT,
+      IS_PRODUCTION,
+      IS_TESTING,
+      MODE,
+    }),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.LimitChunkCountPlugin({

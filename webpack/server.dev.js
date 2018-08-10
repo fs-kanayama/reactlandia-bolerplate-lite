@@ -3,25 +3,25 @@ const path = require('path')
 const webpack = require('webpack')
 const WriteFilePlugin = require('write-file-webpack-plugin')
 
+const modes = {
+  production: 'production',
+  development: 'development',
+  testing: 'testing',
+}
+
+const MODE = process.env.NODE_ENV || modes.production
+const IS_DEVELOPMENT = MODE === modes.development
+const IS_PRODUCTION = MODE === modes.production
+const IS_TESTING = MODE === modes.testing
+
+const VERBOSE = false
+
 const res = p => path.resolve(__dirname, p)
 
 const nodeModules = res('../node_modules')
 const entry = res('../server/render.js')
 const output = path.resolve(__dirname, '../.dev/server')
 
-// if you're specifying externals to leave unbundled, you need to tell Webpack
-// to still bundle `react-universal-component`, `webpack-flush-chunks` and
-// `require-universal-module` so that they know they are running
-// within Webpack and can properly make connections to client modules:
-const externals = fs
-  .readdirSync(nodeModules)
-  .filter(x => !/\.bin|react-universal-component|webpack-flush-chunks/.test(x))
-  .reduce((externals, mod) => {
-    externals[mod] = `commonjs ${mod}`
-    return externals
-  }, {})
-
-externals['react-dom/server'] = 'commonjs react-dom/server'
 
 module.exports = {
   name: 'server',
@@ -29,7 +29,6 @@ module.exports = {
   target: 'node',
   mode: 'development',
   entry: ['regenerator-runtime/runtime.js', entry],
-  externals,
   output: {
     path: output,
     filename: '[name].js',
@@ -40,7 +39,15 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: 'babel-loader',
+        use: {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: false,
+            plugins: [
+              'react-hot-loader/babel',
+            ],
+          },
+        },
       },
     ],
   },
@@ -48,6 +55,16 @@ module.exports = {
     extensions: ['.js', '.css', '.styl'],
   },
   plugins: [
+    new webpack.EnvironmentPlugin({
+      BABEL_ENV: process.env.BABEL_ENV,
+      NODE_ENV: process.env.NODE_ENV,
+      IS_SERVER: true,
+      DEBUG: IS_DEVELOPMENT,
+      IS_DEVELOPMENT,
+      IS_PRODUCTION,
+      IS_TESTING,
+      MODE,
+    }),
     new WriteFilePlugin(),
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1,

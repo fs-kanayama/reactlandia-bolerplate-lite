@@ -10,11 +10,4 @@ module.exports = {
     '@babel/plugin-syntax-dynamic-import',
     'universal-import',
   ],
-  'env': {
-    'development': {
-      'plugins': [
-        'react-hot-loader/babel',
-      ],
-    },
-  },
 }

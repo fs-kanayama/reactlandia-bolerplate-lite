@@ -1,23 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import createHistory from 'history/createBrowserHistory'
-import { AppContainer } from 'react-hot-loader'
-import App from './components/App'
+import createApp from './components/App'
 
-const history = createHistory()
 
-const render = App => ReactDOM.hydrate(
-  <AppContainer>
-    <App history={history}/>
-  </AppContainer>,
-  document.getElementById('root'),
-)
+let { App } = createApp()
 
-if(process.env.NODE_ENV === 'development' && module.hot) {
-  module.hot.accept('./components/App.js', () => {
-    const App = require('./components/App').default // eslint-ignore-line
-    render(App)
-  })
+if(process.env.IS_DEVELOPMENT) {
+  const { setConfig, hot } = require('react-hot-loader')
+  setConfig({ logLevel: 'warn' })
+  App = hot(module)(App)
 }
 
-render(App)
+ReactDOM.hydrate(<App/>, document.getElementById('app'))
+
+

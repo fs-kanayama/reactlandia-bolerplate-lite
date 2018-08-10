@@ -1,13 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom/server'
-import createHistory from 'history/createMemoryHistory'
 import { flushChunkNames } from 'react-universal-component/server'
 import flushChunks from 'webpack-flush-chunks'
-import App from '../src/components/App'
+import serialize from 'serialize-javascript'
+import createApp from '../src/components/App'
 
 export default ({ clientStats }) => (req, res) => {
-  const history = createHistory({ initialEntries: [req.path] })
-  const app = ReactDOM.renderToString(<App history={history}/>)
+  const url = req.url || '/'
+  const { App, store } = createApp({ url })
+  const app = ReactDOM.renderToString(<App/>)
+
   const chunkNames = flushChunkNames()
 
   const {
@@ -18,24 +20,24 @@ export default ({ clientStats }) => (req, res) => {
     stylesheets,
   } = flushChunks(clientStats, { chunkNames })
 
-  console.log('PATH', req.path)
-  console.log('DYNAMIC CHUNK NAMES RENDERED', chunkNames)
-  console.log('SCRIPTS SERVED', scripts)
-  console.log('STYLESHEETS SERVED', stylesheets)
+  const preloadedState = store.getState()
+  const preloadedStateString = serialize(preloadedState)
 
   res.send(
-    `<!doctype html>
-      <html>
+    `<!DOCTYPE html>
+    <html lang="en">
         <head>
-          <meta charset="utf-8">
-          <title>react-universal-component-boilerplate</title>
-          ${styles}
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            ${styles}
         </head>
         <body>
-          <div id="root">${app}</div>
-          ${cssHash}
-          ${js}
+            <script>window.__PRELOADED_STATE__ = ${preloadedStateString}</script>
+            <div id="app">${app}</div>
+            ${cssHash}
+            ${js}
         </body>
-      </html>`,
-  )
+    </html>
+    `)
 }

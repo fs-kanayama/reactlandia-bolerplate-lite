@@ -1,7 +1,8 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 
-const Thing = ({ id = 1 }) => {
+const Thing = ({ id }) => {
   return (
     <>
       <h1 className='thing'>
@@ -15,4 +16,6 @@ const Thing = ({ id = 1 }) => {
   )
 }
 
-export default Thing
+const mapStateToProps = ({ location }) => ({ id: location.payload.id })
+
+export default connect(mapStateToProps)(Thing)
