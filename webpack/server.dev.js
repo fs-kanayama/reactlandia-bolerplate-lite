@@ -1,6 +1,5 @@
 const path = require('path')
 const webpack = require('webpack')
-const WriteFilePlugin = require('write-file-webpack-plugin')
 
 const { IS_DEVELOPMENT, IS_PRODUCTION, IS_TESTING, MODE } = require('../lib/mode')
 
@@ -52,7 +51,6 @@ module.exports = {
       IS_TESTING,
       MODE,
     }),
-    new WriteFilePlugin(),
     new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
   ],
 }
