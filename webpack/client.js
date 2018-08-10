@@ -22,6 +22,7 @@ module.exports = {
     path: path.resolve(__dirname, '..', IS_DEVELOPMENT ? '.dev' : '.prod', 'client'),
     publicPath: '/static/',
   },
+
   module: {
     rules: [
       {
