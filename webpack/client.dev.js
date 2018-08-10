@@ -47,6 +47,12 @@ module.exports = {
           },
         },
       },
+      {
+        loader: 'eslint-loader', options: {
+          configFile: path.resolve(__dirname, '..', '.eslintrc'),
+          quiet: true,
+        },
+      },
     ],
   },
   resolve: {
