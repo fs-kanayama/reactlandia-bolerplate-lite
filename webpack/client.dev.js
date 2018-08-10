@@ -1,26 +1,15 @@
 const path = require('path')
 const webpack = require('webpack')
-const WriteFilePlugin = require('write-file-webpack-plugin') // here so you can see what chunks are built
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin')
+const WriteFilePlugin = require('write-file-webpack-plugin')
 
-const modes = {
-  production: 'production',
-  development: 'development',
-  testing: 'testing',
-}
-
-const MODE = process.env.NODE_ENV || modes.production
-const IS_DEVELOPMENT = MODE === modes.development
-const IS_PRODUCTION = MODE === modes.production
-const IS_TESTING = MODE === modes.testing
-
-const VERBOSE = false
+const { IS_DEVELOPMENT, IS_PRODUCTION, IS_TESTING, MODE } = require('../lib/mode')
 
 module.exports = {
   name: 'client',
   target: 'web',
+  mode: MODE,
   devtool: 'inline-source-map',
-  mode: 'development',
   entry: [
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=false&quiet=true&noInfo=true',
     'react-hot-loader/patch',
@@ -55,9 +44,7 @@ module.exports = {
       },
     ],
   },
-  resolve: {
-    extensions: ['.js', '.css', '.styl'],
-  },
+  resolve: { extensions: ['.js'] },
   plugins: [
     new webpack.EnvironmentPlugin({
       BABEL_ENV: process.env.BABEL_ENV,
@@ -71,13 +58,7 @@ module.exports = {
     }),
     new WriteFilePlugin(),
     new ExtractCssChunks(),
-
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('development'),
-      },
-    }),
   ],
 }

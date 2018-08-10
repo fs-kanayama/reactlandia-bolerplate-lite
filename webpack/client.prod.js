@@ -2,31 +2,22 @@ const path = require('path')
 const webpack = require('webpack')
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin')
 
-const modes = {
-  production: 'production',
-  development: 'development',
-  testing: 'testing',
-}
-
-const MODE = process.env.NODE_ENV || modes.production
-const IS_DEVELOPMENT = MODE === modes.development
-const IS_PRODUCTION = MODE === modes.production
-const IS_TESTING = MODE === modes.testing
-
-const VERBOSE = false
+const { IS_DEVELOPMENT, IS_PRODUCTION, IS_TESTING, MODE } = require('../lib/mode')
 
 module.exports = {
   name: 'client',
   target: 'web',
+  mode: MODE,
   devtool: 'source-map',
-  entry: [path.resolve(__dirname, '../src/index.js')],
+  entry: [
+    path.resolve(__dirname, '../src/index.js'),
+  ],
   output: {
     filename: '[name].[chunkhash].js',
     chunkFilename: '[name].[chunkhash].js',
     path: path.resolve(__dirname, '../.prod/client'),
     publicPath: '/static/',
   },
-  stats: 'verbose',
   module: {
     rules: [
       {
@@ -47,10 +38,7 @@ module.exports = {
       },
     ],
   },
-  mode: 'development',
-  resolve: {
-    extensions: ['.js', '.css', '.styl'],
-  },
+  resolve: { extensions: ['.js'] },
   plugins: [
     new webpack.EnvironmentPlugin({
       BABEL_ENV: process.env.BABEL_ENV,
@@ -65,11 +53,6 @@ module.exports = {
     new ExtractCssChunks(),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production'),
-      },
-    }),
-    new webpack.HashedModuleIdsPlugin(), // not needed for strategy to work (just good practice)
+    new webpack.HashedModuleIdsPlugin(),
   ],
 }

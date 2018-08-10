@@ -1,32 +1,19 @@
 const path = require('path')
 const webpack = require('webpack')
 
-const modes = {
-  production: 'production',
-  development: 'development',
-  testing: 'testing',
-}
-
-const MODE = process.env.NODE_ENV || modes.production
-const IS_DEVELOPMENT = MODE === modes.development
-const IS_PRODUCTION = MODE === modes.production
-const IS_TESTING = MODE === modes.testing
-
-const VERBOSE = false
-
-const res = p => path.resolve(__dirname, p)
-
-const entry = res('../server/render.js')
-const output = path.resolve(__dirname, '../.prod/server')
+const { IS_DEVELOPMENT, IS_PRODUCTION, IS_TESTING, MODE } = require('../lib/mode')
 
 module.exports = {
   name: 'server',
   target: 'node',
+  mode: MODE,
   devtool: 'source-map',
-  entry: [entry],
+  entry: [
+    path.resolve(__dirname, '../server/render.js'),
+  ],
   output: {
-    path: output,
-    filename: 'main.js',
+    filename: 'server.js',
+    path: path.resolve(__dirname, '../.prod/server'),
     libraryTarget: 'commonjs2',
   },
   module: {
@@ -49,9 +36,7 @@ module.exports = {
       },
     ],
   },
-  resolve: {
-    extensions: ['.js', '.css', '.styl'],
-  },
+  resolve: { extensions: ['.js'] },
   plugins: [
     new webpack.EnvironmentPlugin({
       BABEL_ENV: process.env.BABEL_ENV,
@@ -65,14 +50,6 @@ module.exports = {
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.LimitChunkCountPlugin({
-      maxChunks: 1,
-    }),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production'),
-      },
-    }),
-    new webpack.HashedModuleIdsPlugin(),
+    new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
   ],
 }
