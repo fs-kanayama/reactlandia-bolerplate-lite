@@ -1,5 +1,4 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux'
-import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { connectRoutes } from 'redux-first-router'
 import restoreScroll from 'redux-first-router-restore-scroll'
@@ -31,7 +30,6 @@ const initStore = ({ url } = {}) => {
 
   // Setup middleware/enhancer
   let middleware = [
-    thunk,
     middlewareRouter,
   ]
 
