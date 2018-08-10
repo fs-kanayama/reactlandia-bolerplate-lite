@@ -1,7 +1,5 @@
-require('colors')
 const express = require('express')
 const webpack = require('webpack')
-const noFavicon = require('express-no-favicons')
 const webpackDevMiddleware = require('webpack-dev-middleware')
 const webpackHotMiddleware = require('webpack-hot-middleware')
 const webpackHotServerMiddleware = require('webpack-hot-server-middleware')
@@ -14,7 +12,6 @@ const { publicPath } = clientConfig.output
 const outputPath = clientConfig.output.path
 const DEV = process.env.NODE_ENV === 'development'
 const app = express()
-app.use(noFavicon())
 
 let isBuilt = false
 
@@ -22,7 +19,7 @@ const done = () =>
   !isBuilt &&
   app.listen(3000, () => {
     isBuilt = true
-    console.log('BUILD COMPLETE -- Listening @ http://localhost:3000'.magenta)
+    console.info('BUILD COMPLETE -- Listening @ http://localhost:3000')
   })
 
 if(DEV) {

@@ -26,22 +26,6 @@ module.exports = {
         exclude: /node_modules/,
         use: 'babel-loader',
       },
-      {
-        test: /\.styl$/,
-        use: [
-          ExtractCssChunks.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              localIdentName: '[name]__[local]--[hash:base64:5]',
-            },
-          },
-          {
-            loader: 'stylus-loader',
-          },
-        ],
-      },
     ],
   },
   resolve: {
