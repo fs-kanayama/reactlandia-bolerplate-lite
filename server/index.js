@@ -1,6 +1,8 @@
 const express = require('express')
 const webpack = require('webpack')
 
+const clientConfig = require('../webpack/client')
+
 const DEV = process.env.NODE_ENV === 'development'
 const app = express()
 
@@ -23,14 +25,13 @@ if(DEV) {
   const webpackHotMiddleware = require('webpack-hot-middleware')
   const webpackHotServerMiddleware = require('webpack-hot-server-middleware')
 
-  const clientConfigDev = require('../webpack/client.dev')
   const serverConfigDev = require('../webpack/server.dev')
 
-  const compiler = webpack([clientConfigDev, serverConfigDev])
+  const compiler = webpack([clientConfig, serverConfigDev])
   const clientCompiler = compiler.compilers[0]
 
   const devMiddleware = webpackDevMiddleware(compiler, {
-    publicPath: clientConfigDev.output.publicPath,
+    publicPath: clientConfig.output.publicPath,
     writeToDisk: true,
     stats: {
       all: false,
@@ -50,13 +51,12 @@ if(DEV) {
   devMiddleware.waitUntilValid(done)
 }
 else {
-  const clientConfigProd = require('../webpack/client.prod')
   const serverConfigProd = require('../webpack/server.prod')
 
-  webpack([clientConfigProd, serverConfigProd]).run((err, stats) => {
+  webpack([clientConfig, serverConfigProd]).run((err, stats) => {
 
-    const { publicPath } = clientConfigProd.output
-    const outputPath = clientConfigProd.output.path
+    const { publicPath } = clientConfig.output
+    const outputPath = clientConfig.output.path
 
     const clientStats = stats.toJson().children[0]
 
