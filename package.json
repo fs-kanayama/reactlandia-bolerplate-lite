@@ -11,10 +11,13 @@
     "clean": "rm -rf .dev/client/** .dev/server/** .prod/client/** .prod/server/**"
   },
   "dependencies": {
+    "css-hot-loader": "^1.4.1",
+    "css-loader": "^1.0.0",
     "express": "^4.16.3",
     "extract-css-chunks-webpack-plugin": "^3.1.0-beta.4",
     "history": "^4.7.2",
     "lodash": "^4.17.10",
+    "null-loader": "^0.1.1",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",

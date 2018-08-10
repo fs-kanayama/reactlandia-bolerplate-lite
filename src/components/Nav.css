@@ -1,0 +1,24 @@
+.nav {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: linear-gradient(to right, #de723f, #cebb6a, #008000, #4cbcbb, #4c4acb, #94519d);
+  fill-opacity: 0.5;
+}
+
+.nav a {
+  margin: 0;
+  color: #fff;
+  float: left;
+  text-align: center;
+  padding: 0.75rem 0.5rem;
+  text-decoration: none;
+  border: #ffffff 2px solid;
+}
+
+.nav .active {
+  margin: 0;
+  background-color: #ef5c59;
+  border: #444 2px solid;
+}

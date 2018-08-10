@@ -1,9 +1,9 @@
 import _ from 'lodash'
 import React from 'react'
-import { connect } from 'react-redux'
 
-import Link from 'redux-first-router-link'
+import { NavLink } from 'redux-first-router-link'
 
+import './Nav.css'
 
 const links = {
   '/': 'Home',
@@ -17,18 +17,22 @@ const links = {
 }
 
 const Nav = () => (
-  <div>
-    <ul>
-      {
-        _.map(links, (text, url) =>
-          <li key={url + ': ' + text}>
-            <Link to={url}>
-              {text}
-            </Link>
-          </li>)
-      }
-    </ul>
+  <div className='nav'>
+    {
+      _.map(links, (text, url) =>
+        <NavLink
+          to={url}
+          activeClassName='active'
+          isActive={(match, location) => (location.pathname === url)}
+          key={url}
+        >
+          {text}
+        </NavLink>,
+      )
+    }
   </div>
 )
 
-export default connect()(Nav)
+
+export default Nav
+

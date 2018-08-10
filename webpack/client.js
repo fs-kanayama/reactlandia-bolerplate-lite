@@ -28,19 +28,29 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            cacheDirectory: false,
-            plugins: [IS_DEVELOPMENT && 'react-hot-loader/babel'].filter(Boolean),
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: false,
+              plugins: [IS_DEVELOPMENT && 'react-hot-loader/babel'].filter(Boolean),
+            },
           },
-        },
+          {
+            loader: 'eslint-loader', options: {
+              configFile: path.resolve(__dirname, '..', '.eslintrc'),
+              quiet: true,
+            },
+          },
+        ],
       },
       {
-        loader: 'eslint-loader', options: {
-          configFile: path.resolve(__dirname, '..', '.eslintrc'),
-          quiet: true,
-        },
+        test: /\.css$/,
+        use: [
+          IS_DEVELOPMENT && 'css-hot-loader',
+          ExtractCssChunks.loader,
+          'css-loader',
+        ].filter(Boolean),
       },
     ],
   },

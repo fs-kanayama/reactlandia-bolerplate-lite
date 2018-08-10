@@ -24,18 +24,26 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            cacheDirectory: false,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: false,
+              plugins: [IS_DEVELOPMENT && 'react-hot-loader/babel'].filter(Boolean),
+            },
           },
-        },
+          {
+            loader: 'eslint-loader', options: {
+              quiet: true,
+            },
+          },
+        ],
       },
       {
-        loader: 'eslint-loader', options: {
-          configFile: path.resolve(__dirname, '..', '.eslintrc'),
-          quiet: true,
-        },
+        test: /\.css$/,
+        use: [
+          'null-loader',
+        ],
       },
     ],
   },

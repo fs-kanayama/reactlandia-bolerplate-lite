@@ -6,6 +6,7 @@ import Nav from './Nav'
 
 import initStore from '../state/store'
 
+import './App.css'
 
 const createApp = ({ url } = {}) => {
   const { store } = initStore({ url })
@@ -13,7 +14,6 @@ const createApp = ({ url } = {}) => {
   const App = () => (
     <div>
       <Nav/>
-      <hr/>
       <Switcher/>
     </div>
   )

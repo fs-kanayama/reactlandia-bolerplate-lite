@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import './Thing.css'
 
 const Thing = ({ id }) => {
   return (

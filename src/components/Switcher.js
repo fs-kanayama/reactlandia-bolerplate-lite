@@ -6,6 +6,8 @@ import Loading from './Loading'
 import NotFound from './NotFound'
 
 const UniversalPage = universal(({ page }) => import(`../pages/${page}`), {
+  minDelay: 300,
+  alwaysDelay: true,
   loading: Loading,
   error: NotFound,
 })
