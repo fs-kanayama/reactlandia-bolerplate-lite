@@ -3,13 +3,11 @@ const webpack = require('webpack')
 const webpackDevMiddleware = require('webpack-dev-middleware')
 const webpackHotMiddleware = require('webpack-hot-middleware')
 const webpackHotServerMiddleware = require('webpack-hot-server-middleware')
-const clientConfig = require('../webpack/client.dev')
-const serverConfig = require('../webpack/server.dev')
+const clientConfigDev = require('../webpack/client.dev')
+const serverConfigDev = require('../webpack/server.dev')
 const clientConfigProd = require('../webpack/client.prod')
 const serverConfigProd = require('../webpack/server.prod')
 
-const { publicPath } = clientConfig.output
-const outputPath = clientConfig.output.path
 const DEV = process.env.NODE_ENV === 'development'
 const app = express()
 
@@ -23,10 +21,13 @@ const done = () =>
   })
 
 if(DEV) {
-  const compiler = webpack([clientConfig, serverConfig])
+  const compiler = webpack([clientConfigDev, serverConfigDev])
   const clientCompiler = compiler.compilers[0]
   const options = { publicPath, stats: { colors: true } }
   const devMiddleware = webpackDevMiddleware(compiler, options)
+
+  const { publicPath } = clientConfigDev.output
+  const outputPath = clientConfigDev.output.path
 
   app.use(devMiddleware)
   app.use(webpackHotMiddleware(clientCompiler))
@@ -36,11 +37,13 @@ if(DEV) {
 }
 else {
   webpack([clientConfigProd, serverConfigProd]).run((err, stats) => {
+
+    const { publicPath } = clientConfigProd.output
+    const outputPath = clientConfigProd.output.path
+
     const clientStats = stats.toJson().children[0]
 
-    const mainjs = `${serverConfig.output.path}/main.js`
-    console.log(mainjs)
-
+    const mainjs = `${serverConfigProd.output.path}/main.js`
     const serverRender = require(mainjs).default
 
     app.use(publicPath, express.static(outputPath))
