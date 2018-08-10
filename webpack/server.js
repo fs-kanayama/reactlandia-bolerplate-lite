@@ -8,14 +8,17 @@ module.exports = {
   target: 'node',
   mode: MODE,
   devtool: 'source-map',
+
   entry: [
     path.resolve(__dirname, '../server/render.js'),
   ],
+
   output: {
     filename: 'server.js',
-    path: path.resolve(__dirname, '../.prod/server'),
+    path: path.resolve(__dirname, '..', IS_DEVELOPMENT ? '.dev' : '.prod', 'server'),
     libraryTarget: 'commonjs2',
   },
+
   module: {
     rules: [
       {
@@ -37,6 +40,7 @@ module.exports = {
     ],
   },
   resolve: { extensions: ['.js'] },
+
   plugins: [
     new webpack.EnvironmentPlugin({
       BABEL_ENV: process.env.BABEL_ENV,
@@ -48,8 +52,10 @@ module.exports = {
       IS_TESTING,
       MODE,
     }),
-    new webpack.optimize.ModuleConcatenationPlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(),
+
     new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
-  ],
+
+    IS_PRODUCTION && new webpack.optimize.ModuleConcatenationPlugin(),
+    IS_PRODUCTION && new webpack.optimize.OccurrenceOrderPlugin(),
+  ].filter(Boolean),
 }

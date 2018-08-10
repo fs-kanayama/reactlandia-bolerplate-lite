@@ -2,6 +2,7 @@ const express = require('express')
 const webpack = require('webpack')
 
 const clientConfig = require('../webpack/client')
+const serverConfig = require('../webpack/server')
 
 const DEV = process.env.NODE_ENV === 'development'
 const app = express()
@@ -25,9 +26,7 @@ if(DEV) {
   const webpackHotMiddleware = require('webpack-hot-middleware')
   const webpackHotServerMiddleware = require('webpack-hot-server-middleware')
 
-  const serverConfigDev = require('../webpack/server.dev')
-
-  const compiler = webpack([clientConfig, serverConfigDev])
+  const compiler = webpack([clientConfig, serverConfig])
   const clientCompiler = compiler.compilers[0]
 
   const devMiddleware = webpackDevMiddleware(compiler, {
@@ -51,16 +50,13 @@ if(DEV) {
   devMiddleware.waitUntilValid(done)
 }
 else {
-  const serverConfigProd = require('../webpack/server.prod')
-
-  webpack([clientConfig, serverConfigProd]).run((err, stats) => {
-
+  webpack([clientConfig, serverConfig]).run((err, stats) => {
     const { publicPath } = clientConfig.output
     const outputPath = clientConfig.output.path
 
     const clientStats = stats.toJson().children[0]
 
-    const mainjs = `${serverConfigProd.output.path}/${serverConfigProd.output.filename}`
+    const mainjs = `${serverConfig.output.path}/${serverConfig.output.filename}`
     const serverRender = require(mainjs).default
 
     app.use(publicPath, express.static(outputPath))
