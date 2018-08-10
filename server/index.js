@@ -31,9 +31,15 @@ if(DEV) {
 
   const devMiddleware = webpackDevMiddleware(compiler, {
     publicPath: clientConfigDev.output.publicPath,
-    // writeToDisk: true,
-    stats: 'none',
-    // serverSideRender: true,
+    writeToDisk: true,
+    stats: {
+      all: false,
+      errors: true,
+      warnings: true,
+      moduleTrace: true,
+      colors: true,
+    },
+    serverSideRender: true,
     logLevel: 'warn',
   })
 
