@@ -28,7 +28,7 @@ module.exports = {
   devtool: 'source-map',
   target: 'node',
   mode: 'development',
-  entry: ['regenerator-runtime/runtime.js', entry],
+  entry: [entry],
   output: {
     path: output,
     filename: '[name].js',
