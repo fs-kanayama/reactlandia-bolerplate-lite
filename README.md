@@ -114,15 +114,15 @@ Goals of this light bolerplate are:
         "react-universal-component": "2.9.0",
         "webpack": "4.16.1",
 
- - CSS reloading sometimes randomly breaks, especially for the first loaded page
+ - CSS reloading sometimes randomly breaks, especially for the first loaded page ([#1](https://github.com/ivan-aksamentov/reactlandia-bolerplate-lite/issues/1))
 
- - React-DOM may emit a server-client mismatch warning
+ - React-DOM may emit server-client mismatch warnings ([#2](https://github.com/ivan-aksamentov/reactlandia-bolerplate-lite/issues/2))
  
- - Flush-chunks thinks it is unable to find the page chunks
+ - Flush-chunks thinks it is unable to find the page chunks ([#3](https://github.com/ivan-aksamentov/reactlandia-bolerplate-lite/issues/3))
 
- - Hot reload emits warnings
+ - Hot reload emits warnings ([#4](https://github.com/ivan-aksamentov/reactlandia-bolerplate-lite/issues/4))
  
- - Latest version of webpack emits warnings
+ - Latest version of webpack emits warnings ([#5](https://github.com/ivan-aksamentov/reactlandia-bolerplate-lite/issues/5))
 
 
 ## Acknowledgements:
