@@ -1,14 +1,12 @@
 # Reactlandia: boilerplate (lite)
 
-Minimalistic universal server-rendered code-split redux-first-routed boilerplate based on   
-[react-universal-component](https://github.com/faceyspacey/react-universal-component) 
-and other amazing packages from the miraculous continent of Reactlandia.
+Minimalistic universal server-rendered code-split redux-first-routed boilerplate based on [react-universal-component](https://github.com/faceyspacey/react-universal-component) and other amazing packages from the miraculous continent of Reactlandia.
 
 Heavy and opinionated version of this boilerplate with various (unnecessary) bells and whistles will be available here: [not yet](TODO) 
 
 ## Introduction
 
-**Reactlandia: boilerplate (lite)** is basically a minimal version of Next.js, but without Next.js or any other monolithic framework. Instead it uses a set of cool packages from [faceyspacey](https://github.com/faceyspacey?tab=repositories) & Co. In this boilerplate nothing is hidden from you. You will find all the vanilla config files, components and HTML template string as they are, without intermediaries, without pre/postprocessing and ready to be hacked.
+**Reactlandia: boilerplate (lite)** is basically a functional replacement of Next.js, but without Next.js or any other monolithic framework. Instead it uses a set of cool packages from [faceyspacey](https://github.com/faceyspacey?tab=repositories) & Co. In this boilerplate nothing is hidden from you. You will find all the vanilla config files, components and HTML template string as they are, without intermediaries, without pre/postprocessing and ready to be hacked.
 
 Most of the code is *shame\[less|full\]y* copied from Reactlandia demos/examples. The best things are carefully extracted, combined and prettified. 
 
