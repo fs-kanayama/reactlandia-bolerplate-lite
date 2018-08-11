@@ -47,7 +47,6 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          IS_DEVELOPMENT && 'css-hot-loader',
           ExtractCssChunks.loader,
           'css-loader',
         ].filter(Boolean),
