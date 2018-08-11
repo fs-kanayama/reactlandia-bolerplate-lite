@@ -1,5 +1,5 @@
 {
-  "name": "reactlandia-boilerplate",
+  "name": "reactlandia-boilerplate-lite",
   "description": "Barebone universal server-rendered code-split redux-first-routed boilerplate based on Reactlandia packages",
   "version": "0.1.0",
   "main": "server/index.js",
