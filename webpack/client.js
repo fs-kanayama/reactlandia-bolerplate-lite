@@ -17,8 +17,8 @@ module.exports = {
   ].filter(Boolean),
 
   output: {
-    filename: '[name].js',
-    chunkFilename: '[name].js',
+    filename: IS_DEVELOPMENT ? '[name].js' : '[name].[chunkhash].js',
+    chunkFilename: IS_DEVELOPMENT ? '[name].js' : '[name].[chunkhash].js',
     path: path.resolve(__dirname, '..', IS_DEVELOPMENT ? '.dev' : '.prod', 'client'),
     publicPath: '/static/',
   },
