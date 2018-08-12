@@ -17,8 +17,8 @@ module.exports = {
   ].filter(Boolean),
 
   output: {
-    filename: IS_DEVELOPMENT ? '[name].js' : '[name].[chunkhash].js',
-    chunkFilename: IS_DEVELOPMENT ? '[name].js' : '[name].[chunkhash].js',
+    filename: IS_DEVELOPMENT ? '[name].js' : '[name].[chunkhash:5].js',
+    chunkFilename: IS_DEVELOPMENT ? '[name].js' : '[name].[chunkhash:5].js',
     path: path.resolve(__dirname, '..', IS_DEVELOPMENT ? '.dev' : '.prod', 'client'),
     publicPath: '/static/',
   },
@@ -69,8 +69,8 @@ module.exports = {
     }),
 
     new ExtractCssChunks({
-      filename: IS_DEVELOPMENT ? '[name].css' : '[name].[chunkhash].css',
-      chunkFilename: IS_DEVELOPMENT ? '[name].css' : '[name].[chunkhash].css',
+      filename: IS_DEVELOPMENT ? '[name].css' : '[name].[chunkhash:5].css',
+      chunkFilename: IS_DEVELOPMENT ? '[name].css' : '[name].[chunkhash:5].css',
     }),
 
     IS_DEVELOPMENT && new webpack.HotModuleReplacementPlugin(),
