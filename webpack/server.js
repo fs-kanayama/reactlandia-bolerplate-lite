@@ -23,6 +23,15 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
+        enforce: 'pre',
+        exclude: /node_modules/,
+        loader: 'eslint-loader', options: {
+          configFile: path.resolve(__dirname, '..', '.eslintrc'),
+          quiet: true,
+        },
+      },
+      {
+        test: /\.js$/,
         exclude: /node_modules/,
         use: [
           {
@@ -30,11 +39,6 @@ module.exports = {
             options: {
               cacheDirectory: false,
               plugins: [IS_DEVELOPMENT && 'react-hot-loader/babel'].filter(Boolean),
-            },
-          },
-          {
-            loader: 'eslint-loader', options: {
-              quiet: true,
             },
           },
         ],
