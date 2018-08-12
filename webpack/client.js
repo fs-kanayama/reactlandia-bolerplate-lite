@@ -68,7 +68,10 @@ module.exports = {
       MODE,
     }),
 
-    new ExtractCssChunks(),
+    new ExtractCssChunks({
+      filename: IS_DEVELOPMENT ? '[name].css' : '[name].[chunkhash].css',
+      chunkFilename: IS_DEVELOPMENT ? '[name].css' : '[name].[chunkhash].css',
+    }),
 
     IS_DEVELOPMENT && new webpack.HotModuleReplacementPlugin(),
     IS_DEVELOPMENT && new webpack.NoEmitOnErrorsPlugin(),
