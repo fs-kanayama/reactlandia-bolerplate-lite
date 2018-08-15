@@ -24,7 +24,8 @@ module.exports = {
   },
 
   module: {
-    rules: [
+      exprContextCritical: false,
+      rules: [
       {
         test: /\.js$/,
         enforce: 'pre',
