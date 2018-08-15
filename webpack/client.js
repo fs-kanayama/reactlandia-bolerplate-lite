@@ -24,8 +24,12 @@ module.exports = {
   },
 
   module: {
-      exprContextCritical: false,
-      rules: [
+    // WORKAROUND to silent 'Critical dependency' warnings on webpack > 4.16.2.
+    // Requires investigation.
+    // https://github.com/ivan-aksamentov/reactlandia-bolerplate-lite/issues/5
+    exprContextCritical: false,
+
+    rules: [
       {
         test: /\.js$/,
         enforce: 'pre',

@@ -5,6 +5,7 @@
     "plugin:react/recommended"
   ],
   "plugins": ["react", "babel"],
+  "settings": {"react": {"version": "16"}},
   "parserOptions": {
     "ecmaVersion": 8,
     "sourceType": "module",

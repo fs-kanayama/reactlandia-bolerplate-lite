@@ -68,7 +68,7 @@ Goals of this light bolerplate are:
 
 ## How to
 
-  Node.js >= 8 and yarn >= 6 are assumed to be available on your machine.
+  Node.js >= 8 and yarn >= 1.8 are assumed to be available on your machine.
 
   Install dependencies:
 
@@ -110,7 +110,6 @@ Goals of this light bolerplate are:
  - The following packages are "frozen" to slightly older versions, until related issues are resolved:
  
         "react-universal-component": "2.9.0",
-        "webpack": "4.16.1",
 
  - CSS reloading sometimes randomly breaks, especially for the first loaded page ([#1](https://github.com/ivan-aksamentov/reactlandia-bolerplate-lite/issues/1))
 
@@ -121,7 +120,8 @@ Goals of this light bolerplate are:
  - Hot reload emits warnings ([#4](https://github.com/ivan-aksamentov/reactlandia-bolerplate-lite/issues/4))
  
  - Latest version of webpack emits warnings ([#5](https://github.com/ivan-aksamentov/reactlandia-bolerplate-lite/issues/5))
-
+ 
+    A workaround has been applied in [`#1cc7f8d`](https://github.com/ivan-aksamentov/reactlandia-bolerplate-lite/commit/1cc7f8d3e501f10596bbe9881a3183ba297f629d). Now we use the latest version of webpack. Issue stays open until definitive fix.
 
 ## Acknowledgements:
 
