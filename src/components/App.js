@@ -1,32 +1,16 @@
 import React from 'react'
-import { connect, Provider } from 'react-redux'
+import {setConfig, hot} from 'react-hot-loader'
 
 import Switcher from './Switcher'
 import Nav from './Nav'
 
-import initStore from '../state/store'
-
-import './App.css'
-
-const createApp = ({ url } = {}) => {
-  const { store } = initStore({ url })
-
-  const App = () => (
+const App = () => (
     <div>
-      <Nav/>
-      <Switcher/>
+        <Nav/>
+        <Switcher/>
     </div>
-  )
+)
 
-  const AppConnected = connect()(App)
+setConfig({ logLevel: 'warn' })
 
-  const AppWrapped = () => (
-    <Provider store={store}>
-      <AppConnected/>
-    </Provider>
-  )
-
-  return { App: AppWrapped, store }
-}
-
-export default createApp
+export default hot(module)(App)

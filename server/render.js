@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/server'
 import { flushChunkNames } from 'react-universal-component/server'
 import flushChunks from 'webpack-flush-chunks'
 import serialize from 'serialize-javascript'
-import createApp from '../src/components/App'
+import createApp from '../src/containers/App'
 
 export default ({ clientStats }) => (req, res) => {
   const url = req.url || '/'
