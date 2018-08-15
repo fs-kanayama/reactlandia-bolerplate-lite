@@ -1765,7 +1765,7 @@ eslint-plugin-babel@^5.1.0:
   dependencies:
     eslint-rule-composer "^0.3.0"
 
-eslint-plugin-react@^7.10.0:
+eslint-plugin-react@^7.11.1:
   version "7.11.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.11.1.tgz#c01a7af6f17519457d6116aa94fc6d2ccad5443c"
   dependencies:
@@ -1972,7 +1972,7 @@ extglob@^2.0.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-extract-css-chunks-webpack-plugin@^3.1.0-beta.4:
+extract-css-chunks-webpack-plugin@^3.1.0-beta.9:
   version "3.1.0-beta.9"
   resolved "https://registry.yarnpkg.com/extract-css-chunks-webpack-plugin/-/extract-css-chunks-webpack-plugin-3.1.0-beta.9.tgz#69c96d456dc10afc1796a2e32d0ca3b4b96d4572"
   dependencies:
