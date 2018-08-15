@@ -68,7 +68,7 @@ Goals of this light bolerplate are:
 
 ## How to
 
-  Node.js >= 8 and yarn >= 6 are assumed to be available on your machine.
+  Node.js >= 8 and yarn >= 1.8 are assumed to be available on your machine.
 
   Install dependencies:
 
