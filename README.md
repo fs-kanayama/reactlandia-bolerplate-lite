@@ -125,7 +125,28 @@ Goals of this light bolerplate are:
 
           curl -k http://localhost:3000 | grep h1
 
+  ### Hacking reactlandia packages
 
+  Here is how you can setup this boilerplate to make modifications to 
+  reactlandia packages and to test them all at once:
+
+   - fork and clone reactlandia packages into a separate directory 
+   inside the boilerplate, let's say into `3rdparty/`
+   
+    git clone https://github.com/YOUR_NAME/react-universal-component 3rdparty/react-universal-component
+    git clone https://github.com/YOUR_NAME/webpack-flush-chunks 3rdparty/webpack-flush-chunks
+    git clone https://github.com/YOUR_NAME/extract-css-chunks-webpack-plugin 3rdparty/extract-css-chunks-webpack-plugin
+    git clone https://github.com/YOUR_NAME/babel-plugin-universal-import 3rdparty/babel-plugin-universal-import
+   
+   - link these local packages to npm: in `package.json` replace 
+   `"<package>": "<version>"`  with `"package": "link:3rdparty/<package>"`
+   - run `yarn install`
+   - any changes to these packages will be now picked up by the boilerplate
+   - some of the packages have to be built, so you will need to run
+   appropriate build steps (you can automate rebuilding with e.g. `nodemon`)
+   - implement a new feature or fix a bug, make pull request and convince 
+   maintaiers to merge your changes into upstream
+   
 ## Known issues
 
  - The following packages are "frozen" to slightly older versions, until related issues are resolved:
