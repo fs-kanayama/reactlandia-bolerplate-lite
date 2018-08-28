@@ -61,7 +61,7 @@ Goals of this light bolerplate are:
   Any reasonable styling package should work, because you have full control over babel and webpack directly.
   
   - No Redux frameworks. No sagas, thunks, fetching, persistence or anything similar. 
-  Only a couple of debugging mddleware packages is included.
+  Only a couple of debugging middleware packages is included.
   
   - No server-side packages, only barebone Express. Server is very skinny and dumb. It sends 404 to favicon request! You might want to add something (a lot actually).
 
