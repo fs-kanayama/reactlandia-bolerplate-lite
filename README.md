@@ -85,6 +85,27 @@ Goals of this light bolerplate are:
   In both cases open a browser and navigate to `http://localhost:3000`.
 
 
+## Static export
+
+  You can export static HTML version of the app, for deployment to static 
+  hosting. In this case, we server-render all the pages in advance and save them
+  as .html files, so you don't need Node.js server at all. This feature is
+  similar to "export" feature of Next.js.
+
+  Run:
+
+    yarn static
+
+  The result will be in `exported-static-website` you can upload it to static 
+  hosting or to serve locally with any HTTP.
+  
+  For testing, you may for example run `http-server` package:
+  
+    cd exported-static-website/
+    npx http-server
+
+  By default, `http-server` will be listening on `http://127.0.0.1:8080`
+
 # Hacking
 
   When making modifications:

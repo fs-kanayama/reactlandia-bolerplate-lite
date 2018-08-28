@@ -5,8 +5,9 @@ import flushChunks from 'webpack-flush-chunks'
 import serialize from 'serialize-javascript'
 import createApp from '../src/containers/App'
 
-export default ({ clientStats }) => (req, res) => {
-  const url = req.url || '/'
+import { staticMap } from '../src/routes'
+
+const renderStatic = ({ url, clientStats }) => {
   const { App, store } = createApp({ url })
   const app = ReactDOM.renderToString(<App/>)
 
@@ -23,7 +24,7 @@ export default ({ clientStats }) => (req, res) => {
   const preloadedState = store.getState()
   const preloadedStateString = serialize(preloadedState)
 
-  res.send(
+  const html =
     `<!DOCTYPE html>
     <html lang="en">
         <head>
@@ -39,5 +40,14 @@ export default ({ clientStats }) => (req, res) => {
             ${js}
         </body>
     </html>
-    `)
+    `
+  return html
+}
+
+export { renderStatic, staticMap }
+
+export default ({ clientStats }) => (req, res) => {
+  const url = req.url || '/'
+  const html = renderStatic({ url, clientStats })
+  res.send(html)
 }

@@ -1,10 +1,10 @@
 const path = require('path')
 const webpack = require('webpack')
 
-const { IS_DEVELOPMENT, IS_PRODUCTION, IS_TESTING, MODE } = require('../lib/mode')
+const { IS_DEVELOPMENT, IS_PRODUCTION, IS_TESTING, MODE, IS_STATIC_BUILD } = require('../lib/mode')
 
 module.exports = {
-  name: 'server',
+  name: IS_STATIC_BUILD ? 'static' : 'server',
   target: 'node',
   mode: MODE,
   devtool: 'source-map',
@@ -14,8 +14,8 @@ module.exports = {
   ],
 
   output: {
-    filename: 'server.js',
-    path: path.resolve(__dirname, '..', IS_DEVELOPMENT ? '.dev' : '.prod', 'server'),
+    filename: IS_STATIC_BUILD ? 'static.js' : 'server.js',
+    path: path.resolve(__dirname, '..', IS_STATIC_BUILD ? '.static' : IS_DEVELOPMENT ? '.dev' : '.prod', 'server'),
     libraryTarget: 'commonjs2',
   },
 

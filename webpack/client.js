@@ -2,7 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin')
 
-const { IS_DEVELOPMENT, IS_PRODUCTION, IS_TESTING, MODE } = require('../lib/mode')
+const { IS_DEVELOPMENT, IS_PRODUCTION, IS_TESTING, MODE, IS_STATIC_BUILD } = require('../lib/mode')
 
 module.exports = {
   name: 'client',
@@ -19,7 +19,7 @@ module.exports = {
   output: {
     filename: IS_DEVELOPMENT ? '[name].js' : '[name].[chunkhash:5].js',
     chunkFilename: IS_DEVELOPMENT ? '[name].js' : '[name].[chunkhash:5].js',
-    path: path.resolve(__dirname, '..', IS_DEVELOPMENT ? '.dev' : '.prod', 'client'),
+    path: path.resolve(__dirname, '..', IS_STATIC_BUILD ? '.static' : IS_DEVELOPMENT ? '.dev' : '.prod', 'client'),
     publicPath: '/static/',
   },
 

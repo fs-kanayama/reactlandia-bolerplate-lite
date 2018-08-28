@@ -1,6 +1,8 @@
 # Build directories
 .prod/
 .dev/
+.static/
+exported-static-website/
 
 # Logs
 logs
