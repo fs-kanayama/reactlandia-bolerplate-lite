@@ -96,10 +96,10 @@ Goals of this light bolerplate are:
 
     yarn static
 
-  The result will be in `exported-static-website` you can upload it to static 
-  hosting or to serve locally with any HTTP.
+  The result will be in `exported-static-website/`.
+  You can upload it to static hosting or to serve locally with any HTTP server.
   
-  For testing, you may for example run `http-server` package:
+  For testing, you may, for example, run `http-server` package:
   
     cd exported-static-website/
     npx http-server
