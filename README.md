@@ -70,7 +70,7 @@ Goals of this light bolerplate are:
 
 ## How to
 
-  Node.js >= 8 and npm >= 6 are assumed to be available on your machine. If they aren't, check out for example [nvm(https://github.com/creationix/nvm) and [nvm-windows](https://github.com/coreybutler/nvm-windows).
+  Node.js >= 8 and npm >= 6 are assumed to be available on your machine. If they aren't, check out for example [nvm](https://github.com/creationix/nvm) and [nvm-windows](https://github.com/coreybutler/nvm-windows).
 
   Install dependencies:
 
