@@ -3,7 +3,10 @@
   "description": "Barebone universal server-rendered code-split redux-first-routed boilerplate based on Reactlandia packages",
   "version": "0.2.0",
   "main": "server/index.js",
-  "author": "Ivan Aksamentov",
+  "author": "Ivan Aksamentov <ivan.aksamentov@gmail.com> (https://github.com/ivan-aksamentov)",
+  "contributors": [
+    "Adam Lane <enalmada@gmail.com> (https://github.com/Enalmada)"
+  ],
   "license": "MIT",
   "scripts": {
     "dev": "cross-env NODE_ENV=development BABEL_ENV=development node server/index.js",

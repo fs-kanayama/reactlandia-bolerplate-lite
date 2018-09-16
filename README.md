@@ -156,4 +156,6 @@ Goals of this light bolerplate are:
 
 ## Acknowledgements:
 
-Huge shoutout to all folks who work on Reactlandia awesomeness, especially James Gillmore ([FaceySpacey](https://github.com/faceyspacey)) and Zack Jackson ([ScriptedAlchemy](https://github.com/ScriptedAlchemy)), and of course to developers of React, Redux, Webpack, Babel, and other cool packages and frameworks we use daily and take for granted. Keep up the great work!
+Thanks to Adam Lane ([@Enalmada](https://github.com/Enalmada)) for contributing.
+
+Huge shoutout to all folks who work on Reactlandia awesomeness, especially James Gillmore ([@FaceySpacey](https://github.com/faceyspacey)) and Zack Jackson ([@ScriptedAlchemy](https://github.com/ScriptedAlchemy)), and of course to developers of React, Redux, Webpack, Babel, and other cool packages and frameworks we use daily and almost take for granted. Keep up the great work!
