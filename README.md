@@ -6,9 +6,9 @@ Heavy and opinionated version of this boilerplate with various (unnecessary) bel
 
 ## Introduction
 
-**Reactlandia: boilerplate (lite)** is basically a functional replacement of Next.js, but without Next.js or any other monolithic framework. Instead it uses a set of cool packages from [faceyspacey](https://github.com/faceyspacey?tab=repositories) & Co. In this boilerplate nothing is hidden from you. You will find all the vanilla config files, components and HTML template string as they are, without intermediaries, without pre/postprocessing and ready to be hacked.
+**Reactlandia: boilerplate (lite)** is basically a functional replacement of Next.js, but without Next.js or any other monolithic framework. Instead it uses a set of cool packages from [faceyspacey](https://github.com/faceyspacey?tab=repositories) & Co. In this boilerplate nothing is hidden from you. You will find all the vanilla config files, components and HTML template string as they are, without intermediaries, without pre/postprocessing and are ready to be hacked.
 
-Most of the code is *shame\[less|full\]y* copied from Reactlandia demos/examples. The best things are carefully extracted, combined and prettified. 
+Most of the code is `shame(less|full)y` copied from Reactlandia demos/examples. The best things are carefully extracted, combined and prettified. 
 
 Goals of this light bolerplate are:
 
@@ -36,7 +36,7 @@ Goals of this light bolerplate are:
      - [redux-first-router-link](https://github.com/faceyspacey/redux-first-router-link)
      - [redux-first-router-restore-scroll](https://github.com/faceyspacey/redux-first-router-restore-scroll)
 
-  - (optional) Static export. If your app does not need complex dynamic routing, it can be rendered to a set of HTML and CSS files ready to be deployed to a static hosting, without need for Node.js server. This functionality is Similar to Next.js "export" command and to frameworks like Gastby.js.
+  - (optional) Static export. If your app does not need complex dynamic routing, it can be rendered to a set of HTML and CSS files ready to be deployed to a static hosting, without need for Node.js server. This functionality is Similar to Next.js "export" command and to frameworks like GastbyJS. Also all coolest kids in the town already do things *serverless*. Do you?
 
   - (optional) Page-based architecture. If you are familiar with Next.js, you will feel like at home.
   
