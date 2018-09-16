@@ -150,6 +150,7 @@ Goals of this light bolerplate are:
 ## Known issues
 
  - CSS reloading sometimes randomly breaks, especially for the first loaded page ([#1](https://github.com/ivan-aksamentov/reactlandia-bolerplate-lite/issues/1))
+ - Webpack emits duplicated files with `-css` suffix ([#6](https://github.com/ivan-aksamentov/reactlandia-bolerplate-lite/issues/6))
 
 ## Acknowledgements:
 
