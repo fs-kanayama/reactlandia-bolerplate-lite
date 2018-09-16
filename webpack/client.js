@@ -84,6 +84,8 @@ module.exports = {
       filename: IS_DEVELOPMENT ? '[name].css' : '[name].[chunkhash:5].css',
       chunkFilename: IS_DEVELOPMENT ? '[name].css' : '[name].[chunkhash:5].css',
       cssModules: USE_CSS_MODULES,
+      reloadAll: IS_DEVELOPMENT,
+      hot: IS_DEVELOPMENT,
     }),
 
     IS_DEVELOPMENT && new webpack.HotModuleReplacementPlugin(),
