@@ -4,6 +4,9 @@ const ExtractCssChunks = require('extract-css-chunks-webpack-plugin')
 
 const { IS_DEVELOPMENT, IS_PRODUCTION, IS_TESTING, MODE, IS_STATIC_BUILD } = require('../lib/mode')
 
+const USE_CSS_MODULES = false
+
+
 module.exports = {
   name: 'client',
   target: 'web',
@@ -51,7 +54,13 @@ module.exports = {
         test: /\.css$/,
         use: [
           ExtractCssChunks.loader,
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: USE_CSS_MODULES,
+              localIdentName: '[name]__[local]--[hash:base64:5]',
+            },
+          },
         ].filter(Boolean),
       },
     ],
@@ -74,6 +83,7 @@ module.exports = {
     new ExtractCssChunks({
       filename: IS_DEVELOPMENT ? '[name].css' : '[name].[chunkhash:5].css',
       chunkFilename: IS_DEVELOPMENT ? '[name].css' : '[name].[chunkhash:5].css',
+      cssModules: USE_CSS_MODULES,
     }),
 
     IS_DEVELOPMENT && new webpack.HotModuleReplacementPlugin(),
