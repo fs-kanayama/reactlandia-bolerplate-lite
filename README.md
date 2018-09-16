@@ -68,19 +68,19 @@ Goals of this light bolerplate are:
 
 ## How to
 
-  Node.js >= 8 and yarn >= 1.8 are assumed to be available on your machine.
+  Node.js >= 8 and npm >= 6 are assumed to be available on your machine.
 
   Install dependencies:
 
-    yarn install
+    npm install
     
   Run development server with hot reloading:
   
-    yarn dev
+    npm run dev
     
   Or run production server:
 
-    yarn prod
+    npm run prod
     
   In both cases open a browser and navigate to `http://localhost:3000`.
 
@@ -94,7 +94,7 @@ Goals of this light bolerplate are:
 
   Run:
 
-    yarn static
+    npm run static
 
   The result will be in `exported-static-website/`.
   You can upload it to static hosting or to serve locally with any HTTP server.
@@ -140,7 +140,7 @@ Goals of this light bolerplate are:
    
    - link these local packages to npm: in `package.json` replace 
    `"<package>": "<version>"`  with `"package": "link:3rdparty/<package>"`
-   - run `yarn install`
+   - run `npm install`
    - any changes to these packages will be now picked up by the boilerplate
    - some of the packages have to be built, so you will need to run
    appropriate build steps (you can automate rebuilding with e.g. `nodemon`)
