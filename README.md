@@ -35,13 +35,15 @@ Goals of this light bolerplate are:
      - [redux-first-router](https://github.com/faceyspacey/redux-first-router)
      - [redux-first-router-link](https://github.com/faceyspacey/redux-first-router-link)
      - [redux-first-router-restore-scroll](https://github.com/faceyspacey/redux-first-router-restore-scroll)
+
+  - (optional) Static export. If your app does not need complex dynamic routing, it can be rendered to a set of HTML and CSS files ready to be deployed to a static hosting, without need for Node.js server. This functionality is Similar to Next.js "export" command and to frameworks like Gastby.js.
+
+  - (optional) Page-based architecture. If you are familiar with Next.js, you will feel like at home.
   
-  - (optional) Page-based architecture, similar to Next.js
-  
-    "Universalized" components are aggregated into `pages` directory and routing is happening in `Switch` component, which simply replaces the universal component when `redux-first-router` updates the `page` part of the redux state.
-    
+    "Universalized" components are aggregated into `pages` directory and routing is happening in the `Switch` component, which simply replaces the universal component when `redux-first-router` updates the `page` part of the redux state.
+
     The route-to-component mapping is done in `routes.js`.
-    
+
     Not everyone likes this design, because it locks you down to the classic rigid router 
     (similar to Next.js and react-router) and defeats the purpose of redux-based routing.
     The good news is that it is easy to change if you want to: just replace the 
@@ -68,7 +70,7 @@ Goals of this light bolerplate are:
 
 ## How to
 
-  Node.js >= 8 and npm >= 6 are assumed to be available on your machine.
+  Node.js >= 8 and npm >= 6 are assumed to be available on your machine. If they aren't, check out for example [nvm(https://github.com/creationix/nvm) and [nvm-windows](https://github.com/coreybutler/nvm-windows).
 
   Install dependencies:
 
