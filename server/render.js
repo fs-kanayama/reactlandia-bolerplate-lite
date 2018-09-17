@@ -1,5 +1,7 @@
+import crypto from 'crypto'
 import fs from 'fs'
 import path from 'path'
+import _ from 'lodash'
 
 import React from 'react'
 import ReactDOM from 'react-dom/server'
@@ -10,6 +12,15 @@ import createApp from '../src/containers/App'
 import { collect } from 'linaria/server'
 
 import { staticMap } from '../src/routes'
+
+const cssCache = {}
+
+function addStylesheet(url) {
+  return `
+    <link rel="preload" href="${url}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="${url}"></noscript>
+  `
+}
 
 const renderStatic = ({ url, clientStats }) => {
   const { App, store } = createApp({ url })
@@ -30,6 +41,8 @@ const renderStatic = ({ url, clientStats }) => {
   }).join('\n ')
 
   const { critical, other } = collect(app, css)
+  const cssMd5 = crypto.createHash('md5').update(other).digest('hex')
+  cssCache[cssMd5] = other
 
   const preloadedState = store.getState()
   const preloadedStateString = serialize(preloadedState)
@@ -42,11 +55,11 @@ const renderStatic = ({ url, clientStats }) => {
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta http-equiv="X-UA-Compatible" content="ie=edge">
             <style type="text/css">${critical}</style>
-            ${styles}
         </head>
         <body>
             <script>window.__PRELOADED_STATE__ = ${preloadedStateString}</script>
             <div id="app">${app}</div>
+            ${addStylesheet(`/styles/${cssMd5}`)}
             ${cssHash}
             ${js}
         </body>
@@ -59,6 +72,18 @@ export { renderStatic, staticMap }
 
 export default ({ clientStats }) => (req, res) => {
   const url = req.url || '/'
+
+  const matches = /^\/styles\/(?<cssHash>.*)$/.exec(url)
+
+  const cssHash = _.get(matches, 'groups.cssHash')
+  if(cssHash) {
+    const css = _.get(cssCache, cssHash)
+    if(css) {
+      res.set('Content-Type', 'text/css')
+      return res.send(css)
+    }
+  }
+
   const html = renderStatic({ url, clientStats })
   res.send(html)
 }
