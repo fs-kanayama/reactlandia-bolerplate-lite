@@ -42,6 +42,12 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
+            loader: 'linaria/loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+          {
             loader: 'babel-loader',
             options: {
               cacheDirectory: false,
