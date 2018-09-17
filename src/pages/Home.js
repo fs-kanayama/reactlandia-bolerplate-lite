@@ -4,7 +4,7 @@ import { css } from 'linaria'
 import './Home.css'
 
 const title = css`
-  text-transform: uppercase;
+  color: #ffbeba;
 `
 
 
@@ -17,7 +17,7 @@ class Home extends React.Component {
     return (
       <>
         <h1 className={`home ${title}`}>
-          Home
+          🏠 Home
         </h1>
 
         <p className='btn btn-home'>
