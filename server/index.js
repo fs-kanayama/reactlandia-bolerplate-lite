@@ -12,6 +12,8 @@ app.use((req, res, next) => {
   return next()
 })
 
+app.use(['/favicon.ico', '/robots.txt'], (req, res) => res.sendStatus(404))
+
 let isBuilt = false
 
 const done = () =>

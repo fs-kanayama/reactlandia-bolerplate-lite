@@ -5,6 +5,7 @@ const routes = {
   HOME: { path: '/', page: 'Home' },
   ABOUT: { path: '/about', page: 'About' },
   THING: { path: '/thing/:id?', page: 'Thing' },
+  NESTED: { path: '/tree/:nest/:bird?', page: 'NestedBird' },
 
   // More on path parameters of 'redux-first-router':
   // https://github.com/faceyspacey/redux-first-router/issues/83#issuecomment-327703226
