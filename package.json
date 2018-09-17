@@ -20,7 +20,7 @@
     "extract-css-chunks-webpack-plugin": "^3.1.2-beta.6",
     "fs-extra": "^7.0.0",
     "history": "^4.7.2",
-    "linaria": "github:callstack/linaria#ff47c99cab96c1803ab452018a69b2903a382367",
+    "linaria": "github:callstack/linaria#1e17772f3411ceed6c013fb7e9cf85edcf8f4390",
     "lodash": "^4.17.11",
     "null-loader": "^0.1.1",
     "prop-types": "^15.6.2",
