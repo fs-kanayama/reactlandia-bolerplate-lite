@@ -1,6 +1,12 @@
 import React from 'react'
+import { css } from 'linaria'
 
 import './Home.css'
+
+const title = css`
+  text-transform: uppercase;
+`
+
 
 class Home extends React.Component {
   constructor(props, context) {
@@ -10,7 +16,7 @@ class Home extends React.Component {
   render = () => {
     return (
       <>
-        <h1 className='home'>
+        <h1 className={`home ${title}`}>
           Home
         </h1>
 
