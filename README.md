@@ -59,7 +59,7 @@ Goals of this light bolerplate are:
   - No languages or Javascript flavors like TypeScript or Flow. Almost vanilla ES6 with `babel-preset-env` and `babel-preset-react` is used. Add loaders and babel plugins for your favourite languages if you want to.
   
   - No styling solution. Nothing like Styled components, Styled JSX, Stylus, 
-  Sass or PostCSS is included. Feel the zen of plain HTML/CSS. Add your own fluff or ship as is ;)
+  Sass or PostCSS is included. Feel the zen of plain HTML/CSS. Even adorable [Linaria](https://github.com/callstack/linaria) is forced to a separate [branch](https://github.com/ivan-aksamentov/reactlandia-bolerplate-lite/tree/feature/linaria). Feel free to add your own style fluff or ship as it is ;)
   Any reasonable styling package should work, because you have full control over babel and webpack directly.
   
   - No Redux frameworks. No sagas, thunks, fetching, persistence or anything similar. 
