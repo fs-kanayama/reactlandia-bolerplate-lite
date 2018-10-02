@@ -5,7 +5,7 @@ import universal from 'react-universal-component'
 import Loading from './Loading'
 import NotFound from './NotFound'
 
-const UniversalPage = universal(({ page }) => import(`../pages/${page}`), {
+const Switcher = universal(({ page }) => import(`../pages/${page}`), {
   minDelay: 300,
   alwaysDelay: true,
   loading: Loading,
@@ -14,10 +14,6 @@ const UniversalPage = universal(({ page }) => import(`../pages/${page}`), {
   usesBabelPlugin: true,
   ignoreBabelRename: true,
 })
-
-const Switcher = ({ page }) => {
-  return <UniversalPage page={page}/>
-}
 
 const mapState = ({ page }) => ({ page })
 
