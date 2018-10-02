@@ -10,6 +10,9 @@ const UniversalPage = universal(({ page }) => import(`../pages/${page}`), {
   alwaysDelay: true,
   loading: Loading,
   error: NotFound,
+  loadingTransition: true,
+  usesBabelPlugin: true,
+  ignoreBabelRename: true,
 })
 
 const Switcher = ({ page }) => {
