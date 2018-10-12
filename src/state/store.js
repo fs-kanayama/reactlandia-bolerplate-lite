@@ -2,7 +2,6 @@ import { applyMiddleware, combineReducers, compose, createStore } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { connectRoutes } from 'redux-first-router'
 import restoreScroll from 'redux-first-router-restore-scroll'
-import { createBrowserHistory, createMemoryHistory } from 'history'
 
 import { routesMap } from '../routes'
 
@@ -10,17 +9,17 @@ import { initialStatePage, reducerPage } from './reducer_page'
 
 
 const initStore = ({ url } = {}) => {
-
-  const history = process.env.IS_SERVER
-    ? createMemoryHistory({ initialEntries: url ? [url] : null })
-    : createBrowserHistory()
+  const initialEntries = url ? [url] : null
 
   // Setup redux-first-router
   const {
     reducer: reducerRouter,
     middleware: middlewareRouter,
     enhancer: enhancerRouter,
-  } = connectRoutes(history, routesMap, { restoreScroll: restoreScroll() })
+  } = connectRoutes(routesMap, {
+    restoreScroll: restoreScroll(),
+    initialEntries,
+  })
 
   // Setup reducers
   const rootReducer = combineReducers({
@@ -59,7 +58,7 @@ const initStore = ({ url } = {}) => {
   // Create store
   const store = createStore(rootReducer, initialState, enhancer)
 
-  return { store, history }
+  return { store }
 }
 
 export default initStore
